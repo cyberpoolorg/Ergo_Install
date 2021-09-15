@@ -2,7 +2,7 @@
 
 # Initialize all the option variables.
 # This ensures we are not contaminated by variables from the environment.
-APP_DIR=~/.ergo
+APP_DIR=~/ergo
 NODE_NAME=${USER}-$(hostname)
 API_KEY=
 DEBIAN_INSTALLATION_RECOMMENDATIONS=
