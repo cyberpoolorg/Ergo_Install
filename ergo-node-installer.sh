@@ -8,7 +8,7 @@ API_KEY=
 DEBIAN_INSTALLATION_RECOMMENDATIONS=
 TOR=no
 CONFIG_TEMPLATE="ergo.node.mining = false\nscorex.network.nodeName = \"<NODE_NAME>\"\nscorex.restApi.apiKeyHash = \"<API_KEY_HASH>\""
-MODE=full
+MODE=mining
 # Initial Ergo node Java parameter is Java heap size with 50% of total RAM
 NODE_PARAMS="-Xmx$(awk '/MemTotal/ { printf "%.0f", $2*0.5 }' /proc/meminfo)K"
 
