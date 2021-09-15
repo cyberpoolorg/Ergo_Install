@@ -182,8 +182,8 @@ echo "Ergo was downloaded to ${APP_DIR}/ergo.jar"
 echo -n "Executing ergo node to obtain API key hash..."
 daemon --chdir=${APP_DIR} -- java -jar ${APP_DIR}/ergo.jar --mainnet
 PID=$(pgrep -f "daemon --chdir=${APP_DIR} -- java")
-while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && echo -n '.'; done;  # wait for node be ready with progress bar
-API_KEY_HASH=$(curl -X POST "http://localhost:9053/utils/hash/blake2b" -H  "accept: application/json" -H  "Content-Type: application/json" -d "\"${API_KEY}\"" --silent | cut -c 2- | rev | cut -c 2- | rev)
+while ! curl --output /dev/null --silent --head --fail http://127.0.0.1:9053; do sleep 1 && echo -n '.'; done;  # wait for node be ready with progress bar
+API_KEY_HASH=$(curl -X POST "http://127.0.0.1:9053/utils/hash/blake2b" -H  "accept: application/json" -H  "Content-Type: application/json" -d "\"${API_KEY}\"" --silent | cut -c 2- | rev | cut -c 2- | rev)
 echo "\nAPI key hash obtained: ${API_KEY_HASH}"
 echo -n "Stopping Ergo node with PID=${PID}..."
 kill ${PID} && while kill -0 ${PID} > /dev/null 2>&1; do sleep 1 && echo -n '.'; done;  # wait for node exit with progress bar
@@ -200,6 +200,6 @@ echo "Config file was written to ${APP_DIR}/application.conf"
 echo -n "Starting node..."
 daemon --chdir=${APP_DIR} -- java ${NODE_PARAMS} -jar ${APP_DIR}/ergo.jar --mainnet -c ${APP_DIR}/application.conf
 PID=$(pgrep -f "daemon --chdir=${APP_DIR} -- java")
-while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1 && echo -n '.'; done;  # wait for node be ready with progress bar
+while ! curl --output /dev/null --silent --head --fail http://127.0.0.1:9053; do sleep 1 && echo -n '.'; done;  # wait for node be ready with progress bar
 echo "\nNode started."
 echo "To stop the node later, use: kill ${PID}"
